@@ -23,6 +23,7 @@ module.exports = {
     '@typescript-eslint'
   ],
   'rules': {
+    '@typescript-eslint/no-explicit-any': 'off',
     'indent': [
       'warn',
       2,
@@ -41,6 +42,7 @@ module.exports = {
       'never'
     ],
     'react/react-in-jsx-scope': 'off',
-    'no-async-promise-executor': 'off'
+    'no-async-promise-executor': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn']
   }
 }
