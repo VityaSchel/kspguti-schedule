@@ -6,7 +6,7 @@ export function Schedule({ days }: {
 }) {
 
   return (
-    <div>
+    <div className="flex flex-col p-16 gap-14">
       {days.map((day, i) => (
         <Day day={day} key={i} />
       ))}

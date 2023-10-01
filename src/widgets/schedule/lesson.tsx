@@ -7,46 +7,49 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shadcn/ui/card'
-import { Input } from '@/shadcn/ui/input'
-import { Label } from '@/shadcn/ui/label'
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/shadcn/ui/select'
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@/shadcn/ui/avatar'
+import { teachers } from '@/shared/data/teachers'
+import { Lesson as LessonType } from '@/shared/model/lesson'
 
-export function Lesson() {
+export function Lesson({ lesson }: {
+  lesson: LessonType
+}) {
+  const teacherObj = lesson.teacher ? teachers.find(t => t.name === lesson.teacher) : null
+
+  const getTeacherPhoto = (url?: string) => {
+    if(url) {
+      try {
+        const filename = decodeURIComponent(new URL(url).pathname.split('/').pop()!)
+        return `/teachers/${filename}`
+      } catch(e) {
+        console.error(e)
+        return null
+      }
+    } else {
+      return null
+    }
+  }
+
   return (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
-      </CardHeader>
+    <Card className="w-[350px]"> 
+      <div>
+        <Avatar>
+          <AvatarImage src={getTeacherPhoto(teacherObj?.picture)} alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+        <Avatar></Avatar>
+        <CardHeader>
+          <CardTitle>{lesson.subject}</CardTitle>
+          <CardDescription>{lesson.teacher}</CardDescription>
+          <CardDescription>{lesson.place?.classroom}</CardDescription>
+        </CardHeader>
+      </div>
       <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Name of your project" />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="framework">Framework</Label>
-              <Select>
-                <SelectTrigger id="framework">
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  <SelectItem value="next">Next.js</SelectItem>
-                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                  <SelectItem value="astro">Astro</SelectItem>
-                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </form>
+        
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button variant="outline">Cancel</Button>
