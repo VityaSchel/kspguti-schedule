@@ -6,12 +6,6 @@ export type Lesson = {
     hint?: string
   }
   type: string
-  subject: string
-  teacher?: string
-  place?: {
-    address: string
-    classroom: number
-  }
   topic?: string
   resources: {
     type: 'link'
@@ -19,4 +13,13 @@ export type Lesson = {
     url: string
   }[]
   homework: string
-}
+} & (
+  {
+    subject: string
+    teacher?: string
+    place?: {
+      address: string
+      classroom: string
+    }
+  } | { fallbackDiscipline?: string }
+)

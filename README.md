@@ -14,7 +14,7 @@ Reskin of https://lk.ks.psuti.ru/ since it lacks mobile support and is generally
 - node-html-parser for scraping, rehydration strategy for cache
 - TypeScript with types for each package
 
-Built in 1 day. Tools used: pnpm, eslint.
+Built in 1 day. Tools used: pnpm, eslint, react-icons.
 
 ## Hire me!
 

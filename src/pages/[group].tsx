@@ -1,6 +1,6 @@
 import { Schedule } from '@/widgets/schedule'
 import { Day } from '@/shared/model/day'
-import { GetServerSidePropsResult } from 'next'
+import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { getSchedule } from '@/app/agregator/schedule'
 import { NextSerialized, nextDeserializer, nextSerialized } from '@/app/utils/date-serializer'
 import { NavBar } from '@/widgets/navbar'
@@ -20,12 +20,22 @@ export default function HomePage(props: PageProps) {
   )
 }
 
-export async function getServerSideProps(): Promise<GetServerSidePropsResult<PageProps>> {
-  const schedule = await getSchedule(146)
-
-  return {
-    props: {
-      schedule: nextSerialized(schedule)
-    }
+export async function getServerSideProps(context: GetServerSidePropsContext<{ group: string }>): Promise<GetServerSidePropsResult<PageProps>> {
+  const groups: { [group: string]: [number, string] } = {
+    ps7: [146, 'ПС-7'],
+    pks35k: [78, 'ПКС-35к']
   }
+  const group = context.params?.group
+  if (group && Object.hasOwn(groups, group) && group in groups) {
+    const schedule = await getSchedule(...groups[group])
+    return {
+      props: {
+        schedule: nextSerialized(schedule)
+      }
+    }
+  } else {
+    return {
+      notFound: true
+    }
+  }  
 }

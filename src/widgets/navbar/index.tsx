@@ -6,11 +6,11 @@ import { useRouter } from 'next/router'
 import cx from 'classnames'
 
 export function NavBar() {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
 
   return (
     <header className="w-full p-2">
-      <nav className={cx('rounded-lg p-2 w-full flex justify-between', { 'bg-slate-200': theme === 'light', 'bg-slate-900': theme === 'dark' })}>
+      <nav className={cx('rounded-lg p-2 w-full flex justify-between', { 'bg-slate-200': resolvedTheme === 'light', 'bg-slate-900': resolvedTheme === 'dark' })}>
         <ul className="flex gap-2">
           <NavBarItem url="/ps7">ПС-7</NavBarItem>
           <NavBarItem url="/pks35k">ПКС-35к</NavBarItem>

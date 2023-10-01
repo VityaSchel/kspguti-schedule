@@ -14,15 +14,30 @@ export function Day({ day }: {
     'Воскресенье'
   ][day.date.getDay()-1]
 
+  const longNames = day.lessons
+    .some(lesson => 'subject' in lesson && lesson.subject.length > 20)
+
   return (
     <div className="flex flex-col gap-5">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-        {dayOfWeek}
+        {dayOfWeek} <span className='text-muted ml-3'>{Intl.DateTimeFormat('ru-RU', {
+          day: 'numeric',
+          month: 'long',
+          // year: 'numeric'
+        }).format(day.date)}</span>
       </h1>
-      <div className="flex flex-row gap-4">
-        {day.lessons.map((lesson, i) => (
-          <Lesson lesson={lesson} key={i} />
-        ))}
+      <div className='overflow-hidden'>
+        <div className='overflow-auto'>
+          <div className="flex flex-row gap-4 w-max">
+            {day.lessons.map((lesson, i) => (
+              <Lesson 
+                width={longNames ? 450 : 350}
+                lesson={lesson} 
+                key={i} 
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

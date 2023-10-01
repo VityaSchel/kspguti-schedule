@@ -12,13 +12,28 @@ import {
   AvatarFallback,
   AvatarImage,
 } from '@/shadcn/ui/avatar'
+import { Badge } from '@/shadcn/ui/badge'
 import { teachers } from '@/shared/data/teachers'
 import { Lesson as LessonType } from '@/shared/model/lesson'
+import React from 'react'
+import { MdSchool } from 'react-icons/md'
+import { AiOutlineFolderView } from 'react-icons/ai'
+import { BsFillGeoAltFill } from 'react-icons/bs'
+import { RiGroup2Fill } from 'react-icons/ri'
+import { ResourcesDialog } from '@/widgets/schedule/resources-dialog'
 
-export function Lesson({ lesson }: {
+export function Lesson({ lesson, width = 350 }: {
   lesson: LessonType
+  width: number
 }) {
-  const teacherObj = lesson.teacher ? teachers.find(t => t.name === lesson.teacher) : null
+  const [resourcesDialogOpened, setResourcesDialogOpened] = React.useState(false)
+
+  const hasTeacher = 'teacher' in lesson && lesson.teacher
+  const teacherObj = hasTeacher ? teachers.find(t => t.name === lesson.teacher) : null
+  
+  const hasPlace = 'place' in lesson && lesson.place
+
+  const isFallbackDiscipline = 'fallbackDiscipline' in lesson && lesson.fallbackDiscipline
 
   const getTeacherPhoto = (url?: string) => {
     if(url) {
@@ -34,27 +49,76 @@ export function Lesson({ lesson }: {
     }
   }
 
+  const fallbackTeacherName = () => {
+    if (!hasTeacher || !lesson.teacher) return ''
+    const [, firstName, middleName] = lesson.teacher.split(' ')
+    return firstName.at(0)! + middleName.at(0)!
+  }
+
+  const handleOpenResources = () => {
+    setResourcesDialogOpened(true)
+  }
+
   return (
-    <Card className="w-[350px]"> 
-      <div>
-        <Avatar>
-          <AvatarImage src={getTeacherPhoto(teacherObj?.picture)} alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <Avatar></Avatar>
-        <CardHeader>
-          <CardTitle>{lesson.subject}</CardTitle>
-          <CardDescription>{lesson.teacher}</CardDescription>
-          <CardDescription>{lesson.place?.classroom}</CardDescription>
-        </CardHeader>
-      </div>
+    <Card className={`w-[${width}px] min-w-[${width}px] max-w-[${width}px] flex flex-col relative overflow-hidden`} style={{ minWidth: width, maxWidth: width }}> 
+      {lesson.isChange && <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#ffc60026] to-[#95620026]'></div>}
+      <CardHeader>
+        <div className='flex gap-4'>
+          {hasTeacher ? (
+            <Avatar>
+              <AvatarImage 
+                src={getTeacherPhoto(teacherObj?.picture)!} 
+                alt={lesson.teacher} 
+                title={lesson.teacher} 
+              />
+              <AvatarFallback title={lesson.teacher}>
+                {fallbackTeacherName()}
+              </AvatarFallback>
+            </Avatar>
+          ) : (
+            <Avatar>
+              <AvatarFallback><MdSchool /></AvatarFallback>
+            </Avatar>
+          )}
+          <div className='flex flex-col gap-1'>
+            {'subject' in lesson && <CardTitle className='hyphens-auto'>{lesson.subject}</CardTitle>}
+            <CardDescription>
+              {lesson.time.start} - {lesson.time.end}{
+              }{lesson.time.hint && <span className='font-bold'>&nbsp;({lesson.time.hint})</span>}
+            </CardDescription>
+          </div>
+        </div>
+      </CardHeader>
       <CardContent>
-        
+        {lesson.type && <><Badge>{lesson.type}</Badge>{' '}&nbsp;</>}
+        {isFallbackDiscipline && (
+          <span className='leading-relaxed hyphens-auto block'>{lesson.fallbackDiscipline}</span>
+        )}
+        {lesson.topic ? (
+          <span className='leading-relaxed hyphens-auto'>{lesson.topic}</span>
+        ) : (
+          !isFallbackDiscipline  && <span className='text-muted font-semibold'>Нет описания пары</span>
+        )}
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button>Deploy</Button>
-      </CardFooter>
+      {(Boolean(lesson.resources.length) || hasPlace) && (
+        <CardFooter className="flex justify-between mt-auto">
+          {('place' in lesson && lesson.place) ? (
+            <div className='flex flex-col text-muted-foreground text-xs'>
+              <span className='flex items-center gap-2'><BsFillGeoAltFill /> {lesson.place.address}</span>
+              <span className='font-bold flex items-center gap-2'><RiGroup2Fill /> {lesson.place.classroom}</span>
+            </div>
+          ) : <span />}
+          {Boolean(lesson.resources.length) && (
+            <Button onClick={handleOpenResources}><AiOutlineFolderView />&nbsp;Материалы</Button>
+          )}
+        </CardFooter>
+      )}
+      <ResourcesDialog 
+        open={resourcesDialogOpened} 
+        onClose={() => setResourcesDialogOpened(false)}
+        teacherName={('teacher' in lesson && lesson.teacher) ? lesson.teacher : undefined}
+        resources={lesson.resources} 
+      />
     </Card>
   )
 }
