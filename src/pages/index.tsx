@@ -1,27 +1,12 @@
-import { Schedule } from '@/widgets/schedule'
-import { Day } from '@/shared/model/day'
 import { GetServerSidePropsResult } from 'next'
-import { getSchedule } from '@/app/agregator/schedule'
-import { NextSerialized, nextDeserializer, nextSerialized } from '@/app/utils/date-serializer'
 
-type PageProps = NextSerialized<{
-  schedule: Day[]
-}>
+export default function HomePage() { }
 
-export default function HomePage(props: PageProps) {
-  const { schedule } = nextDeserializer(props)
-
-  return (
-    <Schedule days={schedule} />
-  )
-}
-
-export async function getServerSideProps(): Promise<GetServerSidePropsResult<PageProps>> {
-  const schedule = await getSchedule(146)
-
+export async function getServerSideProps(): Promise<GetServerSidePropsResult<Record<string, never>>> {
   return {
-    props: {
-      schedule: nextSerialized(schedule)
+    redirect: {
+      destination: '/ps7',
+      permanent: false
     }
   }
 }
