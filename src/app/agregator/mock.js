@@ -7,7 +7,7 @@ export const content = `<html><head><title>Расписание занятий</
 <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="3481A6"><tbody><tr><td height="30" align="right" bgcolor="ffffff" colspan="2" background="lib/img/itf_ht/mn_top_bg.gif"><a href="?mnt=2"></a><a href="?mnt=3"></a><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td background="lib/img/itf_ht/mn_top_bg.gif" align="right" bgcolor="ffffff" colspan="1"><a href="?mn=2" class="t_on">&nbsp;Расписание занятий&nbsp;</a></td><td background="lib/img/itf_ht/mn_top_bg_btn.gif" align="right" bgcolor="ffffff"><img src="lib/img/itf_ht/mn_top_btn_r.gif"></td><td background="lib/img/itf_ht/mn_top_bg_btn.gif" align="right" bgcolor="ffffff"><a href="?mn=3" class="t_on">Расписание преподавателей</a></td><td background="lib/img/itf_ht/mn_top_bg_btn.gif" align="right" bgcolor="ffffff"><img src="lib/img/itf_ht/mn_top_btn_l.gif"><a href="?mnt=4"></a></td><td background="lib/img/itf_ht/mn_top_bg_btn.gif" align="right" bgcolor="ffffff"><img src="lib/img/itf_ht/mn_top_btn_r.gif"></td><td background="lib/img/itf_ht/mn_top_bg_btn.gif" align="right" bgcolor="ffffff"><a href="?mn=4" class="t_on"></a><a href="https://lk.ks.psuti.ru/std">Личный кабинет студента</a></td><td background="lib/img/itf_ht/mn_top_bg_btn.gif" align="right" bgcolor="ffffff"><img src="lib/img/itf_ht/mn_top_btn_l.gif"></td></tr></tbody></table></td></tr></tbody></table><center><a href="https://lk.ks.psuti.ru/lib/doc/lk_ks_psuti_manual.pdf" target="blank" class="t_green_14"><b><u><i>Инструкция: "Доступ в личный кабинет студента"</i></u></b></a><br>
 <a href="https://disk.yandex.ru/d/ioxTvdQXkPpU5w" target="_blank"><u><i>Расписание занятий на 1 семестр 2023-2024 уч. год (версия для печати)</i></u></a><br>
 <a href="https://disk.yandex.ru/i/WyzJ4DVeq5e_Vg" target="_blank"><u><i>График учебного процесса на 2023/2024 уч. год (версия для печати)</i></u></a><br>
-</center><br>				
+</center><br>
 				<table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="3481A6">
 <tbody><tr><td height="20" bgcolor="dddddd" align="center" colspan="7"><h7>Расписание занятий</h7></td></tr>
 <tr><td bgcolor="3481A6" align="center" colspan="7" background="lib/img/itf_ht/hr_b_01.gif"><img src="lib/img/itf_ht/hr_b_01.gif"></td></tr><tr><td height="10" bgcolor="ffffff" colspan="7" align="center">с 25.09.2023 по 01.10.2023
@@ -28,7 +28,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b>Задание для выполнения</b></td>
 </tr>
 <tr align="center"><td bgcolor="ffffff">1</td>
-<td bgcolor="ffffff">08:00 – 09:30				
+<td bgcolor="ffffff">08:00 – 09:30
 				</td>
 <td bgcolor="ffffff">Самостоятельная работа</td>
 <td bgcolor="ffffff">Физика<br>Кусаева Зарина Владимировна<font class="t_ur2"><br>Л. Толстого, 23<br>Кабинет: 410-2</font></td>
@@ -36,7 +36,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b><a href="https://cloud.mail.ru/public/eDk2/eV51SaUoU" target="blank">Лекция Задачи</a></b><br></td>
 <td bgcolor="ffffff">Сделать конспект по теме: выписать определения, формулы. Самостоятельно решить задачи.<br></td></tr>
 <tr align="center"><td bgcolor="ffffff">2</td>
-<td bgcolor="ffffff">09:40 – 11:10				
+<td bgcolor="ffffff">09:40 – 11:10
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Математика<br>Амукова Светлана Николаевна<font class="t_ur2"><br>Л. Толстого, 23<br>Кабинет: 410-2</font></td>
@@ -44,7 +44,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff"><br></td></tr>
 <tr align="center"><td bgcolor="ffffff">3</td>
-<td bgcolor="ffffff">11:40 – 13:10				
+<td bgcolor="ffffff">11:40 – 13:10
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Математика<br>Амукова Светлана Николаевна<font class="t_ur2"><br>Л. Толстого, 23<br>Кабинет: 410-2</font></td>
@@ -52,7 +52,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff"><br></td></tr>
 <tr align="center"><td bgcolor="ffffff">4</td>
-<td bgcolor="ffffff">13:20 – 14:50				
+<td bgcolor="ffffff">13:20 – 14:50
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Химия<br>Тарасова Таисия Евгеньевна<font class="t_ur2"><br>Л. Толстого, 23<br>Кабинет: 410-2</font></td>
@@ -71,7 +71,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b>Задание для выполнения</b></td>
 </tr>
 <tr align="center"><td bgcolor="ffffff">3</td>
-<td bgcolor="ffffff">11:40 – 13:10				
+<td bgcolor="ffffff">11:40 – 13:10
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">История<br>Арефьев Андрей Андреевич<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 401</font></td>
@@ -79,7 +79,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff"><br></td></tr>
 <tr align="center"><td bgcolor="ffffbb">4</td>
-<td bgcolor="ffffbb">13:20 – 14:50				
+<td bgcolor="ffffbb">13:20 – 14:50
 				<br><a class="t_zm">дистанционно</a></td>
 <td bgcolor="ffffbb"></td>
 <td bgcolor="ffffbb">Физическая культура<br>   </td>
@@ -87,7 +87,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffbb"></td>
 <td bgcolor="ffffbb"><br></td></tr>
 <tr align="center"><td bgcolor="ffffff">5</td>
-<td bgcolor="ffffff">15:10 – 16:40				
+<td bgcolor="ffffff">15:10 – 16:40
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Информатика<br>Ларионова Софья Николаевна<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 208</font></td>
@@ -106,7 +106,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b>Задание для выполнения</b></td>
 </tr>
 <tr align="center"><td bgcolor="ffffff">3</td>
-<td bgcolor="ffffff">11:40 – 13:10				
+<td bgcolor="ffffff">11:40 – 13:10
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Физика<br>Кусаева Зарина Владимировна<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 310</font></td>
@@ -114,7 +114,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Проверка конспекта и задач<br></td></tr>
 <tr align="center"><td bgcolor="ffffbb">4</td>
-<td bgcolor="ffffbb">13:20 – 14:50				
+<td bgcolor="ffffbb">13:20 – 14:50
 				<br><a class="t_zm">перенос с 02.10.23</a></td>
 <td bgcolor="ffffbb"></td>
 <td bgcolor="ffffbb">Физика<br>Кусаева Зарина Владимировна<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 310</font></td>
@@ -122,7 +122,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffbb"></td>
 <td bgcolor="ffffbb"><br></td></tr>
 <tr align="center"><td bgcolor="ffffff">5</td>
-<td bgcolor="ffffff">15:10 – 16:40				
+<td bgcolor="ffffff">15:10 – 16:40
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Иностранный язык<br>Карпеева Александра Сергеевна<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 234</font></td>
@@ -130,7 +130,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff"><br></td></tr>
 <tr align="center"><td bgcolor="ffffbb">6</td>
-<td bgcolor="ffffbb">16:50 – 18:20				
+<td bgcolor="ffffbb">16:50 – 18:20
 				<br><a class="t_zm">дистанционно</a></td>
 <td bgcolor="ffffbb"></td>
 <td bgcolor="ffffbb">География<br>   </td>
@@ -149,7 +149,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b>Задание для выполнения</b></td>
 </tr>
 <tr align="center"><td bgcolor="ffffbb">2</td>
-<td bgcolor="ffffbb">09:40 – 11:10				
+<td bgcolor="ffffbb">09:40 – 11:10
 				<br><a class="t_zm">дистанционно</a></td>
 <td bgcolor="ffffbb"></td>
 <td bgcolor="ffffbb">География<br>   </td>
@@ -157,7 +157,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffbb"></td>
 <td bgcolor="ffffbb"><br></td></tr>
 <tr align="center"><td bgcolor="ffffff">3</td>
-<td bgcolor="ffffff">11:40 – 13:10				
+<td bgcolor="ffffff">11:40 – 13:10
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Математика<br>Амукова Светлана Николаевна<font class="t_ur2"><br>Л. Толстого, 23<br>Кабинет: 410-2</font></td>
@@ -165,7 +165,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff"><br></td></tr>
 <tr align="center"><td bgcolor="ffffff">4</td>
-<td bgcolor="ffffff">13:20 – 14:50				
+<td bgcolor="ffffff">13:20 – 14:50
 				</td>
 <td bgcolor="ffffff">Очно</td>
 <td bgcolor="ffffff">Русский язык<br>Назарова Елена Федоровна<font class="t_ur2"><br>Л. Толстого, 23<br>Кабинет: 410-2</font></td>
@@ -173,7 +173,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b><a href="https://cloud.mail.ru/public/7mwL/Ui6a7ftsP" target="blank">Практическая работа 2</a></b><br></td>
 <td bgcolor="ffffff"><br></td></tr>
 <tr align="center"><td bgcolor="ffffff">5</td>
-<td bgcolor="ffffff">15:10 – 16:40				
+<td bgcolor="ffffff">15:10 – 16:40
 				</td>
 <td bgcolor="ffffff">Очно</td>
 <td bgcolor="ffffff">Литература<br>Назарова Елена Федоровна<font class="t_ur2"><br>Л. Толстого, 23<br>Кабинет: 410-2</font></td>
@@ -192,7 +192,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b>Задание для выполнения</b></td>
 </tr>
 <tr align="center"><td bgcolor="ffffff">2</td>
-<td bgcolor="ffffff">09:40 – 11:10				
+<td bgcolor="ffffff">09:40 – 11:10
 				</td>
 <td bgcolor="ffffff">Очно</td>
 <td bgcolor="ffffff">Русский язык<br>Назарова Елена Федоровна<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 324</font></td>
@@ -200,7 +200,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b><a href="https://cloud.mail.ru/public/EBc5/MYaGgXqKe" target="blank">презентация</a></b><br></td>
 <td bgcolor="ffffff">изучить презентацию, выучить определения<br></td></tr>
 <tr align="center"><td bgcolor="ffffff">3</td>
-<td bgcolor="ffffff">11:40 – 13:10				
+<td bgcolor="ffffff">11:40 – 13:10
 				</td>
 <td bgcolor="ffffff">Очно</td>
 <td bgcolor="ffffff">Литература<br>Назарова Елена Федоровна<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 321</font></td>
@@ -219,7 +219,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"><b>Задание для выполнения</b></td>
 </tr>
 <tr align="center"><td bgcolor="ffffff">1</td>
-<td bgcolor="ffffff">08:00 – 09:30				
+<td bgcolor="ffffff">08:00 – 09:30
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">Основы безопасности жизнедеятельности<br>Корнилова Светлана Александровна<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 110</font></td>
@@ -227,7 +227,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">оформить отчет<br></td></tr>
 <tr align="center"><td bgcolor="ffffff">2</td>
-<td bgcolor="ffffff">09:40 – 11:10				
+<td bgcolor="ffffff">09:40 – 11:10
 				</td>
 <td bgcolor="ffffff">Очно</td>
 <td bgcolor="ffffff">Литература<br>Назарова Елена Федоровна<font class="t_green_10"><br>Московское шоссе, 120<br>Кабинет: 321</font></td>
@@ -235,7 +235,7 @@ export const content = `<html><head><title>Расписание занятий</
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff">читать роман "Отцы и дети"<br></td></tr>
 <tr align="center"><td bgcolor="ffffff">3</td>
-<td bgcolor="ffffff">11:30 – 13:00				
+<td bgcolor="ffffff">11:30 – 13:00
 				</td>
 <td bgcolor="ffffff"></td>
 <td bgcolor="ffffff"><i>Свободное время</i><br>   </td>
@@ -357,5 +357,4 @@ export const content = `<html><head><title>Расписание занятий</
 </tbody></table></td></tr><tr><td align="right" colspan="8" background="lib/img/itf_ht/hr_b_04.gif"><img src="lib/img/itf_ht/hr_b_05.gif"></td></tr></tbody></table></td>
 </tr>
 </tbody></table><br>
-
 </body></html>`

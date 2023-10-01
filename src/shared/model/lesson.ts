@@ -7,8 +7,8 @@ export type Lesson = {
   }
   type: string
   subject: string
-  teacher: string
-  place: {
+  teacher?: string
+  place?: {
     address: string
     classroom: number
   }
