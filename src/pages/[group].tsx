@@ -5,6 +5,9 @@ import { getSchedule } from '@/app/agregator/schedule'
 import { NextSerialized, nextDeserializer, nextSerialized } from '@/app/utils/date-serializer'
 import { NavBar } from '@/widgets/navbar'
 import { LastUpdateAt } from '@/entities/last-update-at'
+import { groups } from '@/shared/data/groups'
+import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 type PageProps = NextSerialized<{
   schedule: Day[]
@@ -13,9 +16,17 @@ type PageProps = NextSerialized<{
 
 export default function HomePage(props: PageProps) {
   const { schedule, parsedAt } = nextDeserializer(props)
+  const router = useRouter()
+  const groupName = groups[router.query.group as string][1]
 
   return (
     <>
+      <Head>
+        <title>Расписание {groupName} в Колледже Связи</title>
+        <meta name="description" content={`Расписание группы ${groupName} на неделю. Самый удобный и лучший сайт для просмотра расписания КС ПГУТИ.`} />
+        <meta name="keywords" content="ПГУТИ, КС ПГУТИ" />
+        <meta name="author" content="Viktor Shchelochkov" />
+      </Head>
       <NavBar />
       <LastUpdateAt date={parsedAt} />
       <Schedule days={schedule} />
@@ -26,10 +37,6 @@ export default function HomePage(props: PageProps) {
 const cachedSchedules = new Map<string, { lastFetched: Date, results: Day[] }>()
 const maxCacheDurationInMS = 1000 * 60 * 60
 export async function getServerSideProps(context: GetServerSidePropsContext<{ group: string }>): Promise<GetServerSidePropsResult<PageProps>> {
-  const groups: { [group: string]: [number, string] } = {
-    ps7: [146, 'ПС-7'],
-    pks35k: [78, 'ПКС-35к']
-  }
   const group = context.params?.group
   if (group && Object.hasOwn(groups, group) && group in groups) {
     let schedule
