@@ -21,12 +21,10 @@ export function NavBar() {
   }
 
   React.useEffect(() => {
-    console.log(resolvedTheme, getSchemeTheme())
     setSchemeTheme(getSchemeTheme())
   }, [])
 
   const theme = resolvedTheme || schemeTheme
-  console.log('theme', theme, cx('rounded-lg p-2 w-full flex justify-between', { 'bg-slate-200': theme === 'light', 'bg-slate-900': theme === 'dark' }))
 
   React.useEffect(() => {
     if(theme === 'light') {

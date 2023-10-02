@@ -6,18 +6,16 @@ import { NextSerialized, nextDeserializer, nextSerialized } from '@/app/utils/da
 import { NavBar } from '@/widgets/navbar'
 import { LastUpdateAt } from '@/entities/last-update-at'
 import { groups } from '@/shared/data/groups'
-import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 type PageProps = NextSerialized<{
   schedule: Day[]
   parsedAt: Date
+  groupName: string
 }>
 
 export default function HomePage(props: PageProps) {
-  const { schedule, parsedAt } = nextDeserializer(props)
-  const router = useRouter()
-  const groupName = groups[router.query.group as string][1]
+  const { schedule, parsedAt, groupName } = nextDeserializer(props)
 
   return (
     <>
@@ -55,7 +53,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
     return {
       props: nextSerialized({
         schedule: schedule,
-        parsedAt: parsedAt
+        parsedAt: parsedAt,
+        groupName: 'fucking slaves'
       })
     }
   } else {
