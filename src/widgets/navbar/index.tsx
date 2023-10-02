@@ -4,6 +4,7 @@ import { Button } from '@/shadcn/ui/button'
 import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { FaGithub } from 'react-icons/fa'
 
 export function NavBar() {
   const { resolvedTheme, theme } = useTheme()
@@ -16,7 +17,14 @@ export function NavBar() {
           <NavBarItem url="/pks35k">ПКС-35к</NavBarItem>
           <AddGroupButton />
         </ul>
-        <ThemeSwitcher />
+        <div className='flex gap-1 min-[500px]:gap-2'>
+          <Link href='https://github.com/VityaSchel/kspguti-schedule' target='_blank' rel='nofollower noreferrer'>
+            <Button variant='outline' size='icon' tabIndex={-1}>
+              <FaGithub />
+            </Button>
+          </Link>
+          <ThemeSwitcher />
+        </div>
       </nav>
     </header>
   )

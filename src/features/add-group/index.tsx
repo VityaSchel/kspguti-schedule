@@ -24,7 +24,7 @@ export function AddGroupButton() {
 
   return (
     <>
-      <Button variant='secondary' onClick={handleOpenPopup}><MdAdd /></Button>
+      <Button variant='secondary' size='icon' onClick={handleOpenPopup}><MdAdd /></Button>
       <Popup open={popupVisible} onClose={() => setPopupVisible(false)} />
     </>
   )
