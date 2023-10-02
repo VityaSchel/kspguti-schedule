@@ -1,5 +1,7 @@
 # Schedule for колледж связи пгути 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/dae2a66a-593a-4e23-adac-967c0ced4ad7/deploy-status)](https://app.netlify.com/sites/kspsuti/deploys)
+
 Reskin of https://lk.ks.psuti.ru/ since it lacks mobile support and is generally ugly.
 
 [![Screenshot](https://github.com/VityaSchel/kspguti-schedule/assets/59040542/07cc1f67-ccb0-4522-a59d-16387fa11987#gh-dark-mode-only)](https://kspsuti.ru#gh-dark-mode-only)
@@ -20,7 +22,7 @@ Reskin of https://lk.ks.psuti.ru/ since it lacks mobile support and is generally
 - Accessability & tab navigation support
 - Dark theme with automatic switching based on system settings
 
-Built under 1 day. Tools used: pnpm, eslint, react-icons.
+Built under 1 day. Tools used: pnpm, eslint, react-icons. Deployed with Netlify and supported by Cloudflare.
 
 ## Hire me!
 
