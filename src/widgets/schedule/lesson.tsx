@@ -60,8 +60,8 @@ export function Lesson({ lesson, width = 350 }: {
   }
 
   return (
-    <Card className={`w-[${width}px] min-w-[${width}px] max-w-[${width}px] flex flex-col relative overflow-hidden`} style={{ minWidth: width, maxWidth: width }}> 
-      {lesson.isChange && <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#ffc60026] to-[#95620026]'></div>}
+    <Card className={`w-full ${width === 450 ? `md:w-[450px] md:min-w-[450px] md:max-w-[450px]` : `md:w-[350px] md:min-w-[350px] md:max-w-[350px]`} flex flex-col relative overflow-hidden snap-start scroll-ml-16 shrink-0`}> 
+      {lesson.isChange && <div className='absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#ffc60026] to-[#95620026] pointer-events-none'></div>}
       <CardHeader>
         <div className='flex gap-4'>
           {hasTeacher ? (
@@ -97,7 +97,7 @@ export function Lesson({ lesson, width = 350 }: {
         {lesson.topic ? (
           <span className='leading-relaxed hyphens-auto'>{lesson.topic}</span>
         ) : (
-          !isFallbackDiscipline  && <span className='text-muted font-semibold'>Нет описания пары</span>
+          !isFallbackDiscipline  && <span className='text-border font-semibold'>Нет описания пары</span>
         )}
       </CardContent>
       {(Boolean(lesson.resources.length) || hasPlace) && (

@@ -14,7 +14,7 @@ export const teachers = [
   },
   {
     name: 'Амукова Светлана Николаевна',
-    picture: 'https://ks.psuti.ru/images/stories/emp/',
+    picture: 'https://ks.psuti.ru/images/stories/emp/амукова.jpg',
     pronouns: 'she'
   },
   {
@@ -36,7 +36,7 @@ export const teachers = [
   },
   {
     name: 'Арефьев Андрей Андреевич',
-    picture: 'https://ks.psuti.ru/images/stories/ks-news/2016/prepodavateli-foto/%20class=',
+    picture: 'https://ks.psuti.ru/images/stories/ks-news/2016/prepodavateli-foto/арефьев.jpg',
     pronouns: 'he'
   },
   {
@@ -107,7 +107,7 @@ export const teachers = [
   },
   {
     name: 'Ларионова Софья Николаевна',
-    picture: 'https://ks.psuti.ru/images/stories/ks-news/2016/prepodavateli-foto/.jpg',
+    picture: 'https://ks.psuti.ru/images/stories/ks-news/2016/prepodavateli-foto/larionova.jpg',
     pronouns: 'she'
   },
   {

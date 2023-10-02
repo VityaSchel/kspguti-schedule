@@ -4,6 +4,7 @@ import contentTypeParser from 'content-type'
 // import { parse } from 'node-html-parser'
 import { JSDOM } from 'jsdom'
 import { content as mockContent } from './mock'
+import { reportParserError } from '@/app/logger'
 
 // ПС-7: 146
 export async function getSchedule(groupID: number, groupName: string): Promise<Day[]> {
@@ -17,11 +18,13 @@ export async function getSchedule(groupID: number, groupName: string): Promise<D
       return parsePage(root, groupName)
     } catch(e) {
       console.error('Error while parsing lk.ks.psuti.ru')
+      reportParserError(new Date().toISOString(), 'Не удалось сделать парсинг для группы', groupName)
       throw e
     }
   } else {
     console.error(page.status, contentType)
     console.error(content.length > 500 ? content.slice(0, 500 - 3) + '...' : content)
+    reportParserError(new Date().toISOString(), 'Не удалось получить страницу для группы', groupName)
     throw new Error('Error while fetching lk.ks.psuti.ru')
   }
 }
