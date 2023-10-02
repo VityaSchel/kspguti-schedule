@@ -22,8 +22,8 @@ export default function HomePage(props: PageProps) {
       <Head>
         <title>Расписание {groupName} в Колледже Связи</title>
         <meta name="description" content={`Расписание группы ${groupName} на неделю. Самый удобный и лучший сайт для просмотра расписания КС ПГУТИ.`} />
-        <meta name="keywords" content="ПГУТИ, КС ПГУТИ" />
-        <meta name="author" content="Viktor Shchelochkov" />
+        {/* <meta name="keywords" content="ПГУТИ, КС ПГУТИ" />
+        <meta name="author" content="Viktor Shchelochkov" /> */}
       </Head>
       <NavBar />
       <LastUpdateAt date={parsedAt} />
