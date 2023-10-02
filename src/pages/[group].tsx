@@ -37,9 +37,18 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
       schedule = cachedSchedule.results
       parsedAt = cachedSchedule.lastFetched
     } else {
-      schedule = await getSchedule(...groups[group])
-      parsedAt = new Date()
-      cachedSchedules.set(group, { lastFetched: new Date(), results: schedule })
+      try {
+        schedule = await getSchedule(...groups[group])
+        parsedAt = new Date()
+        cachedSchedules.set(group, { lastFetched: new Date(), results: schedule })
+      } catch(e) {
+        if (cachedSchedule?.lastFetched) {
+          schedule = cachedSchedule.results
+          parsedAt = cachedSchedule.lastFetched
+        } else {
+          throw e
+        }
+      }
     }
 
     return {

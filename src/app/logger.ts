@@ -10,7 +10,6 @@ if (!token || !ownerID) {
   bot = new TelegramBot(token, { polling: false })
 }
 
-
 export async function reportParserError(...text: string[]) {
   if (!token || !ownerID) return
 
