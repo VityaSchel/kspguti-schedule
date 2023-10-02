@@ -1,9 +1,8 @@
 import { Day } from '@/shared/model/day'
 import { parsePage } from '@/app/parser/schedule'
 import contentTypeParser from 'content-type'
-// import { parse } from 'node-html-parser'
 import { JSDOM } from 'jsdom'
-import { content as mockContent } from './mock'
+// import { content as mockContent } from './mock'
 import { reportParserError } from '@/app/logger'
 
 // ПС-7: 146
