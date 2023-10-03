@@ -90,8 +90,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
       return { props: {} }
     }
 
-    console.log('etag', etag)
-
     context.res.setHeader('ETag', etag)
     return {
       props: nextSerialized({
