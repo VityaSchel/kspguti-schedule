@@ -46,7 +46,8 @@ function Popup({ open, onClose }: {
           На сайте не только появится ваше расписание, но оно будет обновляться каждую неделю. А если во время парсинга произойдет ошибка — я сразу получу об этом уведомление в телеграм, потому что у меня настроен бот.
         </DialogDescription>
         <DialogDescription>
-          Для меня добавить вашу группу это даже не одна строка кода, а одно нажатие клавиши, но я хочу чтобы этот сайт был доступен только самым лучшим и избранным, достойных престижа <Image src={'/1925.png'} width={14} height={14} alt='' className='inline align-text-bottom' />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          Для меня добавить вашу группу это даже не одна строка кода, а одно нажатие клавиши, но я хочу чтобы этот сайт был доступен только самым лучшим и избранным, достойных престижа <img src={'/1925.png'} width={14} height={14} alt='' className='inline align-text-bottom' />
         </DialogDescription>
         <DialogFooter className='!justify-start !flex-row mt-3 gap-3'>
           <Link href='https://t.me/hlothdev'>
