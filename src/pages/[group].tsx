@@ -7,6 +7,8 @@ import { NavBar } from '@/widgets/navbar'
 import { LastUpdateAt } from '@/entities/last-update-at'
 import { groups } from '@/shared/data/groups'
 import crypto from 'crypto'
+import React from 'react'
+import { getDayOfWeek } from '@/shared/utils'
 
 type PageProps = NextSerialized<{
   schedule: Day[]
@@ -15,6 +17,25 @@ type PageProps = NextSerialized<{
 
 export default function HomePage(props: PageProps) {
   const { schedule, parsedAt } = nextDeserializer(props)
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual'
+      }
+      const interval = setInterval(async () => {
+        const today = getDayOfWeek(new Date())
+        const todayBlock = document.getElementById(today)
+        if (todayBlock) {
+          const GAP = 48
+          const HEADER_HEIGHT = 64
+          window.scrollTo({ top: todayBlock.offsetTop - GAP - HEADER_HEIGHT })
+          clearInterval(interval)
+        }
+        await new Promise(resolve => setTimeout(resolve, 100))
+      })
+    }
+  }, [schedule])
 
   return (
     <>

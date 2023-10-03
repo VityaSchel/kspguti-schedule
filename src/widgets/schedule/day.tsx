@@ -1,5 +1,7 @@
 import type { Day as DayType } from '@/shared/model/day'
+import { getDayOfWeek } from '@/shared/utils'
 import { Lesson } from '@/widgets/schedule/lesson'
+import { cx } from 'class-variance-authority'
 
 export function Day({ day }: {
   day: DayType
@@ -17,10 +19,14 @@ export function Day({ day }: {
   const longNames = day.lessons
     .some(lesson => 'subject' in lesson && lesson.subject.length > 20)
 
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const dayPassed = day.date.getTime() < today.getTime()
+
   return (
     <div className="flex flex-col gap-3 md:gap-5">
-      <h1 className="scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-tight lg:text-5xl">
-        {dayOfWeek} <span className='text-border ml-3'>{Intl.DateTimeFormat('ru-RU', {
+      <h1 className={cx('scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-tight lg:text-5xl', { 'text-[hsl(var(--grayed-out))]': dayPassed })} id={getDayOfWeek(day.date)}>
+        {dayOfWeek} <span className={cx('ml-3', { 'text-border': !dayPassed })}>{Intl.DateTimeFormat('ru-RU', {
           day: 'numeric',
           month: 'long',
           // year: 'numeric'

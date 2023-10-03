@@ -37,7 +37,7 @@ export function NavBar() {
   }, [theme])
 
   return (
-    <header className="w-full p-2">
+    <header className="sticky top-0 w-full p-2 bg-background z-[1] pb-0 mb-2 shadow-header">
       <nav className={cx('rounded-lg p-2 w-full flex justify-between', { 'bg-slate-200': theme === 'light', 'bg-slate-900': theme === 'dark' })} ref={navRef}>
         <ul className="flex gap-2">
           <NavBarItem url="/ps7">ПС-7</NavBarItem>

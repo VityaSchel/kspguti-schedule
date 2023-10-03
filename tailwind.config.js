@@ -70,6 +70,9 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      boxShadow: {
+        'header': '0 0.5rem 10px 0 hsl(var(--background))'
+      },
     },
   },
   plugins: [require('tailwindcss-animate'), require('tailwind-scrollbar-hide')],
