@@ -6,6 +6,7 @@ import { NextSerialized, nextDeserializer, nextSerialized } from '@/app/utils/da
 import { NavBar } from '@/widgets/navbar'
 import { LastUpdateAt } from '@/entities/last-update-at'
 import { groups } from '@/shared/data/groups'
+import crypto from 'crypto'
 
 type PageProps = NextSerialized<{
   schedule: Day[]
@@ -51,6 +52,26 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
       }
     }
 
+    const getSha256Hash = (input: string) => {
+      const hash = crypto.createHash('sha256')
+      hash.update(input)
+      return hash.digest('hex')
+    }
+
+    const etag = getSha256Hash(JSON.stringify(nextSerialized(schedule)))
+
+    const ifNoneMatch = context.req.headers['if-none-match']
+    if (ifNoneMatch === etag) {
+      context.res.writeHead(304, { ETag: etag })
+      context.res.end()
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore Content has not changed
+      return { props: {} }
+    }
+
+    console.log('etag', etag)
+
+    context.res.setHeader('ETag', etag)
     return {
       props: nextSerialized({
         schedule: schedule,

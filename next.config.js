@@ -5,7 +5,8 @@ const nextConfig = {
     permanent: false,
     destination: '/ps7',
     source: '/'
-  }]
+  }],
+  generateEtags: false
 }
 
 module.exports = nextConfig
