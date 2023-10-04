@@ -83,14 +83,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
 
     const ifNoneMatch = context.req.headers['if-none-match']
     if (ifNoneMatch === etag) {
-      context.res.writeHead(304, { ETag: etag })
+      context.res.writeHead(304, { ETag: `"${etag}"` })
       context.res.end()
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore Content has not changed
       return { props: {} }
     }
 
-    context.res.setHeader('ETag', etag)
+    context.res.setHeader('ETag', `"${etag}"`)
     return {
       props: nextSerialized({
         schedule: schedule,
