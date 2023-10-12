@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -24,6 +25,7 @@
     "jsdom": "^22.1.0",
     "lucide-react": "^0.279.0",
     "next": "latest",
+    "next-sitemap": "^4.2.3",
     "next-themes": "^0.2.1",
     "node-html-parser": "^6.1.10",
     "node-telegram-bot-api": "^0.63.0",
