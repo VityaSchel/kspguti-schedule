@@ -5,7 +5,7 @@ import { getSchedule } from '@/app/agregator/schedule'
 import { NextSerialized, nextDeserializer, nextSerialized } from '@/app/utils/date-serializer'
 import { NavBar } from '@/widgets/navbar'
 import { LastUpdateAt } from '@/entities/last-update-at'
-import groups from '@/shared/data/groups.json'
+import { groups } from '@/shared/data/groups'
 import crypto from 'crypto'
 import React from 'react'
 import { getDayOfWeek } from '@/shared/utils'
@@ -61,7 +61,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
   if (group && Object.hasOwn(groups, group) && group in groups) {
     let schedule
     let parsedAt
-    const groupName = group as keyof typeof groups
 
     const cachedSchedule = cachedSchedules.get(group)
     if (cachedSchedule?.lastFetched && Date.now() - cachedSchedule.lastFetched.getTime() < maxCacheDurationInMS) {
@@ -69,10 +68,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
       parsedAt = cachedSchedule.lastFetched
     } else {
       try {
-        const group = groups[groupName] as [number, string]
-        schedule = await getSchedule(...group)
+        schedule = await getSchedule(...groups[group])
         parsedAt = new Date()
-        cachedSchedules.set(groupName, { lastFetched: new Date(), results: schedule })
+        cachedSchedules.set(group, { lastFetched: new Date(), results: schedule })
       } catch(e) {
         if (cachedSchedule?.lastFetched) {
           schedule = cachedSchedule.results
@@ -105,7 +103,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
       props: nextSerialized({
         schedule: schedule,
         parsedAt: parsedAt,
-        group: groups[groupName][1]
+        group: groups[group][1]
       })
     }
   } else {
