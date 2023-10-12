@@ -9,14 +9,16 @@ import { groups } from '@/shared/data/groups'
 import crypto from 'crypto'
 import React from 'react'
 import { getDayOfWeek } from '@/shared/utils'
+import Head from 'next/head'
 
 type PageProps = NextSerialized<{
   schedule: Day[]
+  group: string
   parsedAt: Date
 }>
 
 export default function HomePage(props: PageProps) {
-  const { schedule, parsedAt } = nextDeserializer(props)
+  const { schedule, group, parsedAt } = nextDeserializer(props)
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -39,6 +41,12 @@ export default function HomePage(props: PageProps) {
 
   return (
     <>
+      <Head>
+        <title>Группа {group} — Расписание занятий в Колледже Связи</title>
+        <meta name="description" content={`Расписание занятий группы ${group} на неделю в Колледже Связи ПГУТИ. Расписание пар, материалы для подготовки и изменения в расписании.`} />
+        <meta property="og:title" content={`Группа ${group} — Расписание занятий в Колледже Связи`} />
+        <meta property="og:description" content={`Расписание занятий группы ${group} на неделю в Колледже Связи ПГУТИ. Расписание пар, материалы для подготовки и изменения в расписании.`} />
+      </Head>
       <NavBar />
       <LastUpdateAt date={parsedAt} />
       <Schedule days={schedule} />
@@ -94,7 +102,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
     return {
       props: nextSerialized({
         schedule: schedule,
-        parsedAt: parsedAt
+        parsedAt: parsedAt,
+        group: groups[group][1]
       })
     }
   } else {
