@@ -2,7 +2,7 @@ import { Schedule } from '@/widgets/schedule'
 import { Day } from '@/shared/model/day'
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next'
 import { getSchedule } from '@/app/agregator/schedule'
-import { NextSerialized, nextDeserializer, nextSerialized } from '@/app/utils/date-serializer'
+import { NextSerialized, nextDeserialized, nextSerialized } from '@/app/utils/date-serializer'
 import { NavBar } from '@/widgets/navbar'
 import { LastUpdateAt } from '@/entities/last-update-at'
 import { groups } from '@/shared/data/groups'
@@ -11,14 +11,17 @@ import React from 'react'
 import { getDayOfWeek } from '@/shared/utils'
 import Head from 'next/head'
 
-type PageProps = NextSerialized<{
+type PageProps = {
   schedule: Day[]
-  group: string
+  group: {
+    id: string
+    name: string
+  }
   parsedAt: Date
-}>
+}
 
-export default function HomePage(props: PageProps) {
-  const { schedule, group, parsedAt } = nextDeserializer(props)
+export default function HomePage(props: NextSerialized<PageProps>) {
+  const { schedule, group, parsedAt } = nextDeserialized<PageProps>(props)
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -42,10 +45,11 @@ export default function HomePage(props: PageProps) {
   return (
     <>
       <Head>
-        <title>Группа {group} — Расписание занятий в Колледже Связи</title>
-        <meta name="description" content={`Расписание занятий группы ${group} на неделю в Колледже Связи ПГУТИ. Расписание пар, материалы для подготовки и изменения в расписании.`} />
-        <meta property="og:title" content={`Группа ${group} — Расписание занятий в Колледже Связи`} />
-        <meta property="og:description" content={`Расписание занятий группы ${group} на неделю в Колледже Связи ПГУТИ. Расписание пар, материалы для подготовки и изменения в расписании.`} />
+        <title>{`Группа ${group.name} — Расписание занятий в Колледже Связи`}</title>
+        <link rel="canonical" href={`https://kspsuti.ru/${group.id}`} />
+        <meta name="description" content={`Расписание занятий группы ${group.name} на неделю в Колледже Связи ПГУТИ. Расписание пар, материалы для подготовки и изменения в расписании.`} />
+        <meta property="og:title" content={`Группа ${group.name} — Расписание занятий в Колледже Связи`} />
+        <meta property="og:description" content={`Расписание занятий группы ${group.name} на неделю в Колледже Связи ПГУТИ. Расписание пар, материалы для подготовки и изменения в расписании.`} />
       </Head>
       <NavBar />
       <LastUpdateAt date={parsedAt} />
@@ -56,7 +60,7 @@ export default function HomePage(props: PageProps) {
 
 const cachedSchedules = new Map<string, { lastFetched: Date, results: Day[] }>()
 const maxCacheDurationInMS = 1000 * 60 * 60
-export async function getServerSideProps(context: GetServerSidePropsContext<{ group: string }>): Promise<GetServerSidePropsResult<PageProps>> {
+export async function getServerSideProps(context: GetServerSidePropsContext<{ group: string }>): Promise<GetServerSidePropsResult<NextSerialized<PageProps>>> {
   const group = context.params?.group
   if (group && Object.hasOwn(groups, group) && group in groups) {
     let schedule
@@ -103,7 +107,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
       props: nextSerialized({
         schedule: schedule,
         parsedAt: parsedAt,
-        group: groups[group][1]
+        group: {
+          id: group,
+          name: groups[group][1]
+        }
       })
     }
   } else {
