@@ -18,10 +18,11 @@ type PageProps = {
     name: string
   }
   parsedAt: Date
+  cacheAvailableFor: string[]
 }
 
 export default function HomePage(props: NextSerialized<PageProps>) {
-  const { schedule, group, parsedAt } = nextDeserialized<PageProps>(props)
+  const { schedule, group, cacheAvailableFor, parsedAt } = nextDeserialized<PageProps>(props)
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -51,7 +52,7 @@ export default function HomePage(props: NextSerialized<PageProps>) {
         <meta property="og:title" content={`Группа ${group.name} — Расписание занятий в Колледже Связи`} />
         <meta property="og:description" content={`Расписание занятий группы ${group.name} на неделю в Колледже Связи ПГУТИ. Расписание пар, материалы для подготовки и изменения в расписании.`} />
       </Head>
-      <NavBar />
+      <NavBar cacheAvailableFor={cacheAvailableFor} />
       <LastUpdateAt date={parsedAt} />
       <Schedule days={schedule} />
     </>
@@ -102,6 +103,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
       return { props: {} }
     }
 
+    const cacheAvailableFor = Array.from(cachedSchedules.entries())
+      .filter(([, v]) => v.lastFetched.getTime() + maxCacheDurationInMS > Date.now())
+      .map(([k]) => k)
+
     context.res.setHeader('ETag', `"${etag}"`)
     return {
       props: nextSerialized({
@@ -110,7 +115,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext<{ gr
         group: {
           id: group,
           name: groups[group][1]
-        }
+        },
+        cacheAvailableFor
       })
     }
   } else {
