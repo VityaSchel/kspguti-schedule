@@ -19,7 +19,7 @@ export function LastUpdateAt({ date }: {
     <>
       <div className='flex md:justify-end px-4 md:h-0'>
         <span className='text-sm text-border md:whitespace-pre-wrap md:text-right'>
-          Последнее обновление:{'\n'}{now && formatDistanceStrict(date, now, { locale: dateFnsRuLocale, addSuffix: true })}
+          Последнее обновление:{'\n'}{now && date.getTime() <= now ? formatDistanceStrict(date, now, { locale: dateFnsRuLocale, addSuffix: true }) : 'только что'}
         </span>
       </div>
 

@@ -6,7 +6,7 @@ export async function getServerSideProps(): Promise<GetServerSidePropsResult<Rec
   return {
     redirect: {
       destination: '/ps7',
-      permanent: false
+      permanent: true
     }
   }
 }

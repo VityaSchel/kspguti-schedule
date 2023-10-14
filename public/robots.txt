@@ -1,4 +1,6 @@
 User-agent: *
-Disallow:
+Disallow: /
+Allow: /ps7
+Allow: /pks35k
 
 Sitemap: https://kspsuti.ru/sitemap.xml
