@@ -12,6 +12,7 @@ export function nextSerialized<T>(obj: T): NextSerialized<T> | NextSerialized<T[
   if (typeof obj === 'object' && obj !== null) {
     const newObj: any = {}
     for (const [key, value] of Object.entries(obj)) {
+      if(value === undefined) continue
       newObj[key] = isDate(value as Date) ? (value as Date).toISOString() : nextSerialized(value)
     }
     return newObj

@@ -65,10 +65,15 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: 0 },
         },
+        'showup': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'showup': 'showup 1s ease-in'
       },
       boxShadow: {
         'header': '0 0.5rem 10px 0 hsl(var(--background))'
