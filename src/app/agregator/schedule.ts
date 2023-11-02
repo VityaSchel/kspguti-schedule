@@ -5,7 +5,6 @@ import { JSDOM } from 'jsdom'
 // import { content as mockContent } from './mock'
 import { reportParserError } from '@/app/logger'
 
-// ПС-7: 146
 export async function getSchedule(groupID: number, groupName: string): Promise<Day[]> {
   const page = await fetch(`${process.env.PROXY_URL ?? 'https://lk.ks.psuti.ru'}/?mn=2&obj=${groupID}`)
   // const page = { text: async () => mockContent, status: 200, headers: { get: (s: string) => s && 'text/html' } }
