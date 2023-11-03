@@ -80,6 +80,9 @@ dependencies:
   react-icons:
     specifier: ^4.11.0
     version: 4.11.0(react@18.2.0)
+  react-use-size:
+    specifier: ^3.0.2
+    version: 3.0.2(react@18.2.0)
   sass:
     specifier: ^1.69.3
     version: 1.69.3
@@ -3619,6 +3622,15 @@ packages:
       invariant: 2.2.4
       react: 18.2.0
       tslib: 2.6.2
+    dev: false
+
+  /react-use-size@3.0.2(react@18.2.0):
+    resolution: {integrity: sha512-PbWlGh39pyPAKZpPMSAf8AdEuCXako2ofpOttSzTXjye/NUy6avZ/b1E22a7kZFzuwAvKg1IFYDghm9WxOCIMg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react@18.2.0:

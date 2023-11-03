@@ -9,6 +9,7 @@ import { FaGithub } from 'react-icons/fa'
 import cx from 'classnames'
 import { NavContext, NavContextProvider } from '@/shared/context/nav-context'
 import { groups } from '@/shared/data/groups'
+import { useComponentSize } from 'react-use-size'
 
 export function NavBar({ cacheAvailableFor }: {
   cacheAvailableFor: string[]
@@ -40,16 +41,36 @@ export function NavBar({ cacheAvailableFor }: {
     }
   }, [theme])
 
+  const [gradientsOffsets, setGradientsOffsets] = React.useState<{ left: number, right: number }>({ left: 0, right: 0 })
+  const { ref: navLinksRef, width: navWidth } = useComponentSize()
+  const handleScroll: React.UIEventHandler<HTMLUListElement> = (e) => {
+    const MAX_WIDTH = 24
+    setGradientsOffsets({
+      left: Math.min(e.currentTarget.scrollLeft, MAX_WIDTH),
+      right: Math.min(e.currentTarget.scrollWidth - navWidth - e.currentTarget.scrollLeft, MAX_WIDTH),
+    })
+  }
+
   return (
     <NavContextProvider cacheAvailableFor={cacheAvailableFor}>
       <header className="sticky top-0 w-full p-2 bg-background z-[1] pb-0 mb-2 shadow-header">
-        <nav className={cx('rounded-lg p-2 w-full flex justify-between', { 'bg-slate-200': theme === 'light', 'bg-slate-900': theme === 'dark' })} ref={navRef}>
-          <ul className="flex gap-2">
-            {Object.entries(groups).map(([groupID, [groupNumber, groupName]]) => (
-              <NavBarItem url={'/' + groupID} key={groupNumber}>{groupName}</NavBarItem>
-            ))}
-            <AddGroupButton />
-          </ul>
+        <nav className={cx('rounded-xl p-2 w-full flex justify-between gap-4', { 'bg-slate-200': theme === 'light', 'bg-slate-900': theme === 'dark' })} ref={navRef}>
+          <div className='overflow-hidden relative flex-1' ref={navLinksRef}>
+            <span 
+              className='block h-full w-6 bg-gradient-to-r from-slate-900 to-transparent absolute left-0 pointer-events-none' 
+              style={{ width: gradientsOffsets.left }}
+            />
+            <ul className="overflow-auto rounded-lg flex gap-2 [&>*]:shrink-0" onScroll={handleScroll}>
+              {Object.entries(groups).map(([groupID, [groupNumber, groupName]]) => (
+                <NavBarItem url={'/' + groupID} key={groupNumber}>{groupName}</NavBarItem>
+              ))}
+              <AddGroupButton />
+            </ul>
+            <span 
+              className='block h-full w-6 bg-gradient-to-l from-slate-900 to-transparent absolute right-0 top-0 pointer-events-none' 
+              style={{ width: gradientsOffsets.right }}
+            />
+          </div>
           <div className='flex gap-1 min-[500px]:gap-2'>
             <Link href='https://github.com/VityaSchel/kspguti-schedule' target='_blank' rel='nofollower noreferrer'>
               <Button variant='outline' size='icon' tabIndex={-1}>
