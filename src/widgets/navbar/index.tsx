@@ -14,6 +14,7 @@ import { useComponentSize } from 'react-use-size'
 export function NavBar({ cacheAvailableFor }: {
   cacheAvailableFor: string[]
 }) {
+  const { group } = useRouter().query
   const { resolvedTheme } = useTheme()
   const [schemeTheme, setSchemeTheme] = React.useState<string>()
   const navRef = React.useRef<HTMLDivElement>(null)
@@ -43,13 +44,30 @@ export function NavBar({ cacheAvailableFor }: {
 
   const [gradientsOffsets, setGradientsOffsets] = React.useState<{ left: number, right: number }>({ left: 0, right: 0 })
   const { ref: navLinksRef, width: navWidth } = useComponentSize()
+  const MAX_WIDTH = 24
+  const navLinksMenuRef = React.useRef<HTMLUListElement>(null)
+  const linksItemsRefs = React.useRef<HTMLLIElement[]>([])
+
   const handleScroll: React.UIEventHandler<HTMLUListElement> = (e) => {
-    const MAX_WIDTH = 24
     setGradientsOffsets({
-      left: Math.min(e.currentTarget.scrollLeft, MAX_WIDTH),
-      right: Math.min(e.currentTarget.scrollWidth - navWidth - e.currentTarget.scrollLeft, MAX_WIDTH),
+      left: Math.max(Math.min(e.currentTarget.scrollLeft, MAX_WIDTH), 0),
+      right: Math.max(Math.min(e.currentTarget.scrollWidth - navWidth - e.currentTarget.scrollLeft, MAX_WIDTH), 0),
     })
   }
+
+  React.useEffect(() => {
+    if (!navLinksMenuRef.current) return
+    setGradientsOffsets({
+      left: gradientsOffsets.left,
+      right: Math.min(navLinksMenuRef.current.scrollWidth - navWidth, MAX_WIDTH),
+    })
+  }, [navWidth, navLinksMenuRef])
+
+  React.useEffect(() => {
+    if (!navLinksMenuRef.current) return
+    const index = Object.keys(groups).findIndex(groupLink => String(group) === groupLink)
+    navLinksMenuRef.current.scrollTo({ left: linksItemsRefs.current[index].offsetLeft })
+  }, [group, linksItemsRefs, navLinksMenuRef])
 
   return (
     <NavContextProvider cacheAvailableFor={cacheAvailableFor}>
@@ -60,9 +78,13 @@ export function NavBar({ cacheAvailableFor }: {
               className='block h-full w-6 bg-gradient-to-r from-slate-900 to-transparent absolute left-0 pointer-events-none' 
               style={{ width: gradientsOffsets.left }}
             />
-            <ul className="overflow-auto rounded-lg flex gap-2 [&>*]:shrink-0" onScroll={handleScroll}>
-              {Object.entries(groups).map(([groupID, [groupNumber, groupName]]) => (
-                <NavBarItem url={'/' + groupID} key={groupNumber}>{groupName}</NavBarItem>
+            <ul 
+              className="overflow-auto rounded-lg flex gap-2 [&>*]:shrink-0" 
+              onScroll={handleScroll} 
+              ref={navLinksMenuRef}
+            >
+              {Object.entries(groups).map(([groupID, [groupNumber, groupName]], i) => (
+                <NavBarItem url={'/' + groupID} key={groupNumber} ref={ref => linksItemsRefs.current[i] = ref}>{groupName}</NavBarItem>
               ))}
               <AddGroupButton />
             </ul>
@@ -85,9 +107,7 @@ export function NavBar({ cacheAvailableFor }: {
   )
 }
 
-function NavBarItem({ url, children }: React.PropsWithChildren<{
-  url: string
-}>) {
+const NavBarItem = React.forwardRef<any, React.PropsWithChildren<{ url: string }>>(({ url, children }, ref) => {
   const router = useRouter()
   const isActive = router.asPath === url
   const { cacheAvailableFor, isLoading, setIsLoading } = React.useContext(NavContext)
@@ -120,6 +140,7 @@ function NavBarItem({ url, children }: React.PropsWithChildren<{
       tabIndex={-1} variant={isActive ? 'default' : 'secondary'} 
       disabled={Boolean(isLoading)}
       loading={isLoading === url}
+      ref={ref}
     >
       {children}
     </Button>
@@ -136,4 +157,6 @@ function NavBarItem({ url, children }: React.PropsWithChildren<{
       )}
     </li>
   )
-}
+})
+
+NavBarItem.displayName = 'NavBarItem'

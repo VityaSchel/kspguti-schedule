@@ -31,7 +31,7 @@ export function TeacherPhoto({ src, teacherName }: {
         const timings = [...flow.timings, Date.now()]
         const timingsTimes = timings.map((t, i, ar) => i === 0 ? 0 : t - ar[i - 1])
         if (timingsTimes.length !== 7) return console.warn('Why would you click on her?')
-        const ranges = [[0, 1], [300, 450], [120, 280], [120, 280], [120, 280], [390, 500], [320, 490]]
+        const ranges = [[0, 1], [300, 450], [120, 280], [120, 280], [120, 280], [300, 600], [300, 600]]
         const correctTimings = timingsTimes.map((t, i) => _.inRange(t, ranges[i][0], ranges[i][1]))
         if (correctTimings.every(Boolean)) {
           setClownFlowStarted(true)
