@@ -124,7 +124,8 @@ export const teachers = [
   },
   {
     name: 'Малбасарова Галия Худанбаевна',
-    picture: 'https://ks.psuti.ru/images/stories/emp/2014-kuntaeva.jpg'
+    picture: 'https://ks.psuti.ru/images/stories/emp/2014-kuntaeva.jpg',
+    pronouns: 'she'
   },
   {
     name: 'Матулина Татьяна Сергеевна',
@@ -245,7 +246,8 @@ export const teachers = [
   },
   {
     name: 'Шомас Елена Александровна',
-    picture: 'https://ks.psuti.ru/images/stories/emp/2014-shomas.jpg'
+    picture: 'https://ks.psuti.ru/images/stories/emp/2014-shomas.jpg',
+    pronouns: 'she'
   },
   {
     name: 'Шукова Марина Геннадьевна',
@@ -254,5 +256,9 @@ export const teachers = [
   {
     name: 'Щербакова Надежда Юрьевна',
     picture: 'https://ks.psuti.ru/images/stories/ks-news/2016/prepodavateli-foto/andreeva.jpg'
+  },
+  {
+    name: 'Ахмедова Кристина Рамонджановна',
+    pronouns: 'she'
   }
 ]

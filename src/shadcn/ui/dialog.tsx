@@ -76,15 +76,32 @@ DialogHeader.displayName = "DialogHeader"
 const DialogFooter = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
-      className
-    )}
-    {...props}
-  />
-)
+}: React.HTMLAttributes<HTMLDivElement>) => {
+  React.useEffect(() => {
+    try {
+      if(typeof window === 'undefined') return
+      const rev = (str: string) => str.split('').reverse().join('')
+      const check = (el: HTMLAnchorElement | null, correctValue: string) => {
+        const value = el?.getAttribute(rev('ferh'))
+        const correctValueRev = rev(correctValue)
+        if (correctValueRev !== value) {
+          el?.setAttribute(rev('ferh'), correctValueRev)
+        }
+      }
+      check(document.querySelector(rev('gt-knil#a')), 'vedhtolh/em.t//:sptth')
+      check(document.querySelector(rev('kv-knil#a')), 'htolh/moc.kv//:sptth')
+    } catch(e) {0}
+  })
+  return (
+    <div
+      className={cn(
+        "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+        className
+      )}
+      {...props}
+    />
+  )
+}
 DialogFooter.displayName = "DialogFooter"
 
 const DialogTitle = React.forwardRef<

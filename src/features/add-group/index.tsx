@@ -50,10 +50,10 @@ function Popup({ open, onClose }: {
           Для меня добавить вашу группу это даже не одна строка кода, а одно нажатие клавиши, но я хочу чтобы этот сайт был доступен только самым лучшим и избранным, достойных престижа <img src={'/1925.png'} width={14} height={14} alt='' className='inline align-text-bottom' />
         </DialogDescription>
         <DialogFooter className='!justify-start !flex-row mt-3 gap-3'>
-          <Link href='https://t.me/hlothdev'>
+          <Link href='https://t.me/hlothdev' id='link-tg'>
             <Button tabIndex={-1} className='gap-3'><BsTelegram /> Мой телеграм</Button>
           </Link>
-          <Link href='https://vk.com/hloth'>
+          <Link href='https://vk.com/hloth' id='link-vk'>
             <Button tabIndex={-1} className='gap-3'><SlSocialVkontakte /> Мой ВКонтакте</Button>
           </Link>
         </DialogFooter>

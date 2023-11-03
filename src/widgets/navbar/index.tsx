@@ -2,11 +2,9 @@ import React from 'react'
 import { AddGroupButton } from '@/features/add-group'
 import { ThemeSwitcher } from '@/features/theme-switch'
 import { Button } from '@/shadcn/ui/button'
-import { useTheme } from 'next-themes'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FaGithub } from 'react-icons/fa'
-import cx from 'classnames'
 import { NavContext, NavContextProvider } from '@/shared/context/nav-context'
 import { groups } from '@/shared/data/groups'
 import { useComponentSize } from 'react-use-size'
@@ -15,32 +13,7 @@ export function NavBar({ cacheAvailableFor }: {
   cacheAvailableFor: string[]
 }) {
   const { group } = useRouter().query
-  const { resolvedTheme } = useTheme()
-  const [schemeTheme, setSchemeTheme] = React.useState<string>()
   const navRef = React.useRef<HTMLDivElement>(null)
-
-  const getSchemeTheme = () => {
-    if (typeof window !== 'undefined') {
-      return window.localStorage.getItem('theme') || document.querySelector('html')!.style.colorScheme
-    } else 
-      return 'light'
-  }
-
-  React.useEffect(() => {
-    setSchemeTheme(getSchemeTheme())
-  }, [])
-
-  const theme = resolvedTheme || schemeTheme
-
-  React.useEffect(() => {
-    if(theme === 'light') {
-      navRef.current?.classList.add('bg-slate-200')
-      navRef.current?.classList.remove('bg-slate-900')
-    } else {
-      navRef.current?.classList.add('bg-slate-900')
-      navRef.current?.classList.remove('bg-slate-200')
-    }
-  }, [theme])
 
   const [gradientsOffsets, setGradientsOffsets] = React.useState<{ left: number, right: number }>({ left: 0, right: 0 })
   const { ref: navLinksRef, width: navWidth } = useComponentSize()
@@ -72,10 +45,10 @@ export function NavBar({ cacheAvailableFor }: {
   return (
     <NavContextProvider cacheAvailableFor={cacheAvailableFor}>
       <header className="sticky top-0 w-full p-2 bg-background z-[1] pb-0 mb-2 shadow-header">
-        <nav className={cx('rounded-xl p-2 w-full flex justify-between gap-4', { 'bg-slate-200': theme === 'light', 'bg-slate-900': theme === 'dark' })} ref={navRef}>
+        <nav className='rounded-xl p-2 w-full flex justify-between gap-4 bg-dynamicBackground' ref={navRef}>
           <div className='overflow-hidden relative flex-1' ref={navLinksRef}>
             <span 
-              className='block h-full w-6 bg-gradient-to-r from-slate-900 to-transparent absolute left-0 pointer-events-none' 
+              className='block h-full w-6 bg-gradient-to-r from-dynamicBackground to-transparent absolute left-0 pointer-events-none' 
               style={{ width: gradientsOffsets.left }}
             />
             <ul 
@@ -89,12 +62,12 @@ export function NavBar({ cacheAvailableFor }: {
               <AddGroupButton />
             </ul>
             <span 
-              className='block h-full w-6 bg-gradient-to-l from-slate-900 to-transparent absolute right-0 top-0 pointer-events-none' 
+              className='block h-full w-6 bg-gradient-to-l from-dynamicBackground to-transparent absolute right-0 top-0 pointer-events-none' 
               style={{ width: gradientsOffsets.right }}
             />
           </div>
           <div className='flex gap-1 min-[500px]:gap-2'>
-            <Link href='https://github.com/VityaSchel/kspguti-schedule' target='_blank' rel='nofollower noreferrer'>
+            <Link href='https://github.com/VityaSchel/kspguti-schedule' id='nav-source-link' target='_blank' rel='nofollower noreferrer'>
               <Button variant='outline' size='icon' tabIndex={-1}>
                 <FaGithub />
               </Button>
