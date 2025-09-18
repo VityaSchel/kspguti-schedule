@@ -2,6 +2,8 @@
 
 Reskin of https://lk.ks.psuti.ru/ since it lacks mobile support and is generally ugly.
 
+Deployed version at kspsuti.ru is now closed because I left Russia because of war and never actually needed education in first place and only used it to avoid going to army.
+
 [![Screenshot](https://github.com/VityaSchel/kspguti-schedule/assets/59040542/07cc1f67-ccb0-4522-a59d-16387fa11987#gh-dark-mode-only)](https://kspsuti.ru#gh-dark-mode-only)
 
 [![Screenshot](https://github.com/VityaSchel/kspguti-schedule/assets/59040542/7bd26798-5ec1-4033-a9ca-84ffa0c44f52#gh-light-mode-only)](https://kspsuti.ru#gh-light-mode-only)
